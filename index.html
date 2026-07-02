@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paxori — Fast, Secure File Transfer</title>
+    <meta
+      name="description"
+      content="Paxori is a modern, cross-platform file transfer experience built for speed, security, and simplicity."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#hero">
+        <span class="brand-mark">P</span>
+        <span>Paxori</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#studio">Studio</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#install">Install</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="hero" class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Cross-platform file transfers, reimagined</p>
+          <h1>Move files quickly, securely, and effortlessly between devices.</h1>
+          <p class="intro">
+            Paxori brings a clean experience to local and network sharing with reliable transfers,
+            modern controls, and native support for Windows, macOS, and Linux.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#studio">Open transfer studio</a>
+            <a class="btn btn-secondary" href="#architecture">See the design</a>
+          </div>
+          <ul class="highlights">
+            <li>⚡ Fast local and network transfers</li>
+            <li>🔒 Secure communication</li>
+            <li>🌍 Cross-platform by design</li>
+          </ul>
+        </div>
+
+        <div class="hero-card" aria-label="Transfer preview">
+          <div class="card-header">
+            <span class="status-dot"></span>
+            <span>Transfer session</span>
+          </div>
+          <div class="transfer-item">
+            <div>
+              <strong>Project bundle</strong>
+              <p>2.4 GB • 84 files</p>
+            </div>
+            <span class="pill">Sending</span>
+          </div>
+          <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+          <div class="stats">
+            <div>
+              <strong>12.4 MB/s</strong>
+              <p>throughput</p>
+            </div>
+            <div>
+              <strong>98.6%</strong>
+              <p>complete</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Features</p>
+          <h2>Everything Paxori stands for.</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>Fast local and network transfers</h3>
+            <p>Quickly move files between devices with a lightweight transfer engine built for speed.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Secure device communication</h3>
+            <p>Encrypted, reliable connections keep transfers private and protected end to end.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Cross-platform compatibility</h3>
+            <p>Paxori runs on Windows, macOS, and Linux with native install workflows for each system.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Files and folders supported</h3>
+            <p>Transfer individual files or entire folders in a single session without extra steps.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Clean, modern UI</h3>
+            <p>A polished interface keeps transfer controls simple and visually clear.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Lightweight and efficient</h3>
+            <p>Minimal resource usage keeps Paxori fast and unobtrusive during transfers.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Reliable transfer management</h3>
+            <p>Monitor status, retry transfers, and stay in control of every session.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Native installers</h3>
+            <p>Platform-specific installers ensure easy setup on Windows, macOS, and Linux.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="studio" class="section studio-section">
+        <div class="section-heading">
+          <p class="eyebrow">Transfer studio</p>
+          <h2>Preview the experience before the first file ever moves.</h2>
+        </div>
+        <div class="studio-grid">
+          <div class="studio-card">
+            <div id="dropZone" class="drop-zone">
+              <p class="drop-title">Drop files or folders here</p>
+              <p class="drop-copy">Drag in your project assets or choose them manually to begin a transfer.</p>
+              <label class="btn btn-secondary upload-btn" for="fileInput">Choose files or folder</label>
+              <input id="fileInput" type="file" multiple webkitdirectory directory hidden />
+            </div>
+            <div class="transfer-controls">
+              <label for="deviceSelect">Destination device</label>
+              <select id="deviceSelect" class="device-select">
+                <option value="Ari's MacBook">Ari's MacBook — Online</option>
+                <option value="Linux Workstation">Linux Workstation — Online</option>
+                <option value="Windows Surface">Windows Surface — Idle</option>
+              </select>
+            </div>
+            <div class="queue-panel">
+              <h4>Transfer queue</h4>
+              <div id="fileList" class="file-list">No files selected yet.</div>
+            </div>
+            <button id="transferButton" class="btn btn-primary transfer-button">Start secure transfer</button>
+            <div class="transfer-results" id="transferResults"></div>
+          </div>
+
+          <div class="studio-sidebar">
+            <div class="studio-card small-card">
+              <h3>Nearby devices</h3>
+              <select id="deviceList" class="device-select">
+                <option value="Ari's MacBook">Ari's MacBook — Online</option>
+                <option value="Linux Workstation">Linux Workstation — Online</option>
+                <option value="Windows Surface">Windows Surface — Idle</option>
+              </select>
+            </div>
+            <div class="studio-card small-card">
+              <h3>Transfer timeline</h3>
+              <ul id="timeline" class="timeline">
+                <li>Waiting for a destination device.</li>
+              </ul>
+            </div>
+            <div class="studio-card small-card">
+              <h3>Uploaded files</h3>
+              <div id="uploadedFiles" class="uploaded-files">No files uploaded yet.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="architecture" class="section split-section">
+        <div>
+          <p class="eyebrow">Architecture</p>
+          <h2>A modular design that stays easy to extend.</h2>
+          <p>
+            Paxori separates the user experience, transfer engine, networking layer, and platform
+            integration so each component can evolve independently. That keeps the product stable as
+            new capabilities are added.
+          </p>
+        </div>
+        <div class="architecture-list">
+          <div class="architecture-item">
+            <strong>User interface</strong>
+            <p>Responsive desktop experience with simple controls and clear feedback.</p>
+          </div>
+          <div class="architecture-item">
+            <strong>Transfer engine</strong>
+            <p>Discovers devices, manages connections, and routes files efficiently.</p>
+          </div>
+          <div class="architecture-item">
+            <strong>Networking layer</strong>
+            <p>Brings reliability and security to each communication path.</p>
+          </div>
+          <div class="architecture-item">
+            <strong>Platform integration</strong>
+            <p>Supports polished installation and system-level integration across platforms.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="install" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Installation</p>
+          <h2>Install Paxori in seconds from GitHub releases.</h2>
+        </div>
+        <div class="install-grid">
+          <article class="install-card">
+            <h3>Windows</h3>
+            <p>Install directly from GitHub with a single PowerShell command.</p>
+            <pre><code>powershell -NoProfile -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/AkiUse306/Paxori/main/install.ps1 | iex"</code></pre>
+            <p class="muted">This installer downloads the release ZIP from GitHub and registers uninstall metadata.</p>
+          </article>
+          <article class="install-card">
+            <h3>macOS / Linux</h3>
+            <p>Install for your user or system-wide using the shell installer.</p>
+            <pre><code>curl -fsSL https://raw.githubusercontent.com/AkiUse306/Paxori/main/install.sh | bash
+sudo curl -fsSL https://raw.githubusercontent.com/AkiUse306/Paxori/main/install.sh | sudo bash --global</code></pre>
+            <p class="muted">Global install places Paxori under /usr/local; user install stays in your home directory.</p>
+          </article>
+          <article class="install-card">
+            <h3>Windows CLI</h3>
+            <p>Install from Command Prompt with optional elevated system install.</p>
+            <pre><code>install.bat
+install.bat --global</code></pre>
+            <p class="muted">Global install writes Paxori into Program Files and supports running from anywhere after PATH setup.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Built around the principles of simple, fast, and reliable file transfer.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
