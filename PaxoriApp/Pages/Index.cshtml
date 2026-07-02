@@ -1,0 +1,108 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Paxori Transfer Hub";
+}
+
+<div class="page-shell py-5">
+    <div class="container">
+        <header class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-4 mb-5">
+            <div>
+                <p class="text-uppercase text-primary fw-semibold mb-2">Paxori</p>
+                <h1 class="display-5 fw-bold">Fast, secure cross-platform transfers</h1>
+                <p class="text-muted fs-5">Choose devices, upload files, and move data with a polished desktop-style web interface.</p>
+            </div>
+            <div class="status-panel p-4 rounded-4 shadow-sm bg-white border">
+                <h5 class="mb-3">Session status</h5>
+                <p class="mb-1 text-muted">Destination device</p>
+                <span class="badge rounded-pill bg-primary text-white">@Model.SelectedDevice</span>
+                <p class="mb-1 mt-3 text-muted">Transferred items</p>
+                <span class="badge rounded-pill bg-success text-white">@Model.UploadedFiles.Count</span>
+                <p class="mb-1 mt-3 text-muted">Upload folder</p>
+                <span class="d-block text-truncate">wwwroot/uploads</span>
+            </div>
+        </header>
+
+        <div class="row g-4">
+            <div class="col-lg-7">
+                <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+                    <div class="card-body p-5">
+                        <h2 class="h4 fw-semibold mb-4">Transfer studio</h2>
+                        @if (!string.IsNullOrEmpty(Model.StatusMessage))
+                        {
+                            <div class="alert alert-info rounded-4">@Model.StatusMessage</div>
+                        }
+                        <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold" for="SelectedDevice">Choose destination device</label>
+                                <select asp-for="SelectedDevice" class="form-select form-select-lg" id="SelectedDevice">
+                                    @foreach (var device in Model.Devices)
+                                    {
+                                        <option value="@device">@device</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold" for="Files">Files to transfer</label>
+                                <input asp-for="Files" class="form-control form-control-lg" type="file" id="Files" multiple />
+                                <span asp-validation-for="Files" class="text-danger"></span>
+                            </div>
+                            <div class="d-flex gap-3 flex-column flex-sm-row">
+                                <button type="submit" class="btn btn-primary btn-lg">Transfer files</button>
+                                <button type="button" class="btn btn-outline-secondary btn-lg" id="clearSelection">Clear selection</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="card shadow-sm border-0 rounded-4 h-100">
+                    <div class="card-body p-5">
+                        <h2 class="h4 fw-semibold mb-4">Transfer queue</h2>
+                        @if (Model.UploadedFiles.Any())
+                        {
+                            <div class="list-group list-group-flush">
+                                @foreach (var file in Model.UploadedFiles)
+                                {
+                                    <div class="list-group-item bg-transparent p-3 rounded-4 mb-3 border">
+                                        <div class="d-flex justify-content-between align-items-start gap-3">
+                                            <div>
+                                                <h6 class="mb-1">@file.Name</h6>
+                                                <p class="mb-0 text-muted">@Math.Round(file.Size / 1024.0, 1) KB</p>
+                                            </div>
+                                            <a class="btn btn-sm btn-outline-primary" href="@file.Url" target="_blank">Download</a>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="empty-state text-center py-5 text-muted">
+                                <p class="mb-1">No transfers have completed yet.</p>
+                                <p class="small">Upload files and select a destination to begin.</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm border-0 rounded-4 mt-5">
+            <div class="card-body p-5">
+                <h2 class="h4 fw-semibold mb-3">About Paxori</h2>
+                <p class="text-muted">Paxori is designed as a lightweight cross-platform transfer experience. This interface demonstrates a clean desktop-style transfer hub with secure uploads and device selection.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('clearSelection')?.addEventListener('click', () => {
+            const fileInput = document.getElementById('Files');
+            if (fileInput) fileInput.value = '';
+        });
+    </script>
+}

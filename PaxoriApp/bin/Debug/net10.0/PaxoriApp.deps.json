@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "PaxoriApp/1.0.0": {
+        "runtime": {
+          "PaxoriApp.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PaxoriApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
