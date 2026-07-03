@@ -1,5 +1,9 @@
 name: Deploy GitHub Pages
 
+permissions:
+  contents: write
+  pages: write
+
 on:
   push:
     branches:
@@ -36,3 +40,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           publish_branch: gh-pages
+          
